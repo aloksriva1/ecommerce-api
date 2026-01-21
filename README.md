@@ -21,7 +21,6 @@ Docker 28.1.1
 MySQL (local installation or Dockerized)
 
 
-
 Step-By-Step Implementation Plan
 
 Phase 1 – Foundation
