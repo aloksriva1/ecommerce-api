@@ -19,4 +19,54 @@ OpenJDK 25
 Apache Maven 3.9.9
 Docker 28.1.1
 MySQL (local installation or Dockerized)
+
+
+
+Step-By-Step Implementation Plan
+
+Phase 1 – Foundation
+
+API Gateway
+
+Auth Service
+
+User Service
+
+Phase 2 – Core Commerce
+
+Product Service
+
+Inventory Service
+
+Cart Service
+
+Phase 3 – Order Flow
+
+Order Service
+
+Payment Service
+
+Shipping Service
+
+Phase 4 – Enhancements
+
+Reviews & Ratings
+
+Coupons & Offers
+
+Notifications (Email/SMS)
+
+8. Future Features (FirstCry-like)
+
+Age-based recommendations
+
+Subscription for essentials
+
+Wishlist
+
+Flash sales
+
+Admin dashboard
+
+Analytics service
 	
