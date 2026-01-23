@@ -5,8 +5,8 @@
 <!--	<parent>-->
 <!--		<groupId>org.springframework.boot</groupId>-->
 <!--		<artifactId>spring-boot-starter-parent</artifactId>-->
-<!--		<version>4.0.1</version>-->
-<!--		<relativePath/>-->
+<!--		<version>4.0.2</version>-->
+<!--		<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
 <!--	</parent>-->
 
 	<parent>
@@ -16,11 +16,13 @@
 	</parent>
 
 
+
+
 	<groupId>com.corporate.learning</groupId>
-	<artifactId>userservice</artifactId>
+	<artifactId>apigateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>userService</name>
-	<description>Demo project for Spring Boot</description>
+	<name>apiGateway</name>
+	<description>API Gateway Service</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -37,9 +39,6 @@
 	<properties>
 		<java.version>21</java.version>
 	</properties>
-
-
-
 	<dependencies>
 
 	</dependencies>
@@ -47,31 +46,12 @@
 
 
 
+
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</path>
-					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
