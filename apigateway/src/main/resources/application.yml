@@ -1,4 +1,3 @@
-# yaml
 server:
   port: 9091
 
@@ -13,16 +12,8 @@ spring:
           uri: http://localhost:9092
           predicates:
             - Path=/user-service/**
-
-
-# Example alternative (if using service discovery like Eureka):
-#      routes:
-#        - id: userservice
-#          uri: lb://userservice
-#          predicates:
-#            - Path=/users/**
-#          filters:
-#            - StripPrefix=1
+          filters:
+            - StripPrefix=1
 
 management:
   endpoints:
