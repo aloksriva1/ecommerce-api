@@ -8,10 +8,10 @@
 
     <!-- Parent project coordinates -->
     <groupId>com.ecommerce</groupId>
-    <artifactId>ecommerce-application</artifactId>
+    <artifactId>ecommerce-app</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
-    <name>ecommerce-application</name>
+    <name>ecommerce-app</name>
 
 
 

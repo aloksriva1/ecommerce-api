@@ -11,7 +11,7 @@
 
 	<parent>
 		<groupId>com.ecommerce</groupId>
-		<artifactId>ecommerce-application</artifactId>
+		<artifactId>ecommerce-app</artifactId>
 		<version>1.0.0</version>
 	</parent>
 
