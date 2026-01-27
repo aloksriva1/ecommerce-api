@@ -13,7 +13,7 @@ spring:
           predicates:
             - Path=/user-service/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=0
 
   main:
     web-application-type: reactive
