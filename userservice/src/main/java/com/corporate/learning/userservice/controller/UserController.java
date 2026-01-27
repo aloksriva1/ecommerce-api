@@ -25,12 +25,17 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
-    // 2. Get All Users
-    @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUser();
-        return ResponseEntity.ok(users);
+    @GetMapping("/test")
+    public String testData() {
+        return "User Service is up and running";
     }
+
+    // 2. Get All Users
+//    @GetMapping
+//    public ResponseEntity<List<User>> getAllUsers() {
+//        List<User> users = userService.getAllUser();
+//        return ResponseEntity.ok(users);
+//    }
 
     // 3. Get User By ID
     @GetMapping("/{id}")
@@ -39,7 +44,6 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
 
 
 
