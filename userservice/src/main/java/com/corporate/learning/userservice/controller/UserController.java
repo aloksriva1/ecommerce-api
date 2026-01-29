@@ -3,49 +3,45 @@ package com.corporate.learning.userservice.controller;
 import com.corporate.learning.userservice.entity.User;
 import com.corporate.learning.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
 
-@Autowired
-    UserService userService;
+    @Autowired
+    private UserService userService;
 
     // 1. Create User
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User createdUser = userService.createUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<User> createUser(@RequestBody User user) {
+        return userService.createUser(user);
     }
 
+    // Test endpoint
     @GetMapping("/test")
-    public String testData() {
-        return "User Service is up and running";
+    public Mono<String> testData() {
+        return Mono.just("User Service is up and running");
     }
 
-     //2. Get All Users
+    // 2. Get All Users
     @GetMapping("/getAllUsers")
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUser();
-        return ResponseEntity.ok(users);
+    public Flux<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     // 3. Get User By ID
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable UUID id) {
+    public Mono<ResponseEntity<User>> getUserById(@PathVariable UUID id) {
         return userService.getUserById(id)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .defaultIfEmpty(ResponseEntity.notFound().build());
     }
-
-
-
-
 }

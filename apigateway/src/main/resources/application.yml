@@ -15,8 +15,8 @@ spring:
           filters:
             - RewritePath=/api/v1/(?<segment>.*), /user-service/api/v1/${segment}
 
-  main:
-    web-application-type: reactive
+#  main:
+#    web-application-type: reactive
 
 management:
   endpoints:

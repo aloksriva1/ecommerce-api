@@ -1,21 +1,22 @@
 package com.corporate.learning.userservice.entity;
 
-import jakarta.persistence.*;
+
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
-@Entity
-@Table(name="users")
+
+
+@Table("users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private String id;
     private String name;
     private String email;
     private String password;
