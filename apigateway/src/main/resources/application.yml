@@ -9,11 +9,11 @@ spring:
     gateway:
       routes:
         - id: user-service
-          uri: http://localhost:9092
+          uri: http://localhost:9092/
           predicates:
-            - Path=/user-service/**
+            - Path=/api/v1/**
           filters:
-            - StripPrefix=0
+            - RewritePath=/api/v1/(?<segment>.*), /user-service/api/v1/${segment}
 
   main:
     web-application-type: reactive
