@@ -11,12 +11,6 @@ spring:
         - id: user-service
           uri: http://localhost:9092
           predicates:
-            - Path=/user-service/**
+            - Path=/api/v1/**
           filters:
-            - StripPrefix=1
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+            - RewritePath=/api/v1/(?<segment>.*), /user-service/api/v1/${segment}

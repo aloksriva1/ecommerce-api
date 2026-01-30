@@ -26,11 +26,12 @@ public class UserController {
     }
 
     // 2. Get All Users
-    @GetMapping
+    @GetMapping("/getAllUsers")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUser();
         return ResponseEntity.ok(users);
     }
+
 
     // 3. Get User By ID
     @GetMapping("/{id}")
