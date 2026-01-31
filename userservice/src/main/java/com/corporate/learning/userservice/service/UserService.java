@@ -2,6 +2,8 @@ package com.corporate.learning.userservice.service;
 
 
 import com.corporate.learning.userservice.entity.User;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +11,11 @@ import java.util.UUID;
 
 public interface UserService {
 
-    User createUser(User user);
-    List<User> getAllUser();
-    Optional<User> getUserById(UUID uuid);
-    void deleteUser(UUID uuid);
-    User updateUser(UUID uuid, User user);
+    Mono<User> createUser(User user);
+    Flux<User> getAllUsers();
+    Mono<User> getUserById(String ulid);
+    void deleteUser(String ulid);
+    Mono<User> updateUser(String ulid, User user);
+
 
 }
