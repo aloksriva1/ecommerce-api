@@ -19,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     // 1. Create User
-    @PostMapping
+    @PostMapping("/createUser")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<User> createUser(@RequestBody User user) {
         return userService.createUser(user);
@@ -39,7 +39,7 @@ public class UserController {
 
     // 3. Get User By ID
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<User>> getUserById(@PathVariable UUID id) {
+    public Mono<ResponseEntity<User>> getUserById(@PathVariable String id) {
         return userService.getUserById(id)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());

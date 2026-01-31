@@ -3,32 +3,40 @@ package com.corporate.learning.userservice.service.impl;
 import com.corporate.learning.userservice.entity.User;
 import com.corporate.learning.userservice.repository.UserRepository;
 import com.corporate.learning.userservice.service.UserService;
+import com.github.f4b6a3.ulid.UlidCreator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
 
+    private final R2dbcEntityTemplate template;
+
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    public UserServiceImpl(R2dbcEntityTemplate template)
+    { this.template = template; }
+
     @Override
     public Mono<User> createUser(User user) {
-        user.setId(UUID.randomUUID().toString());
+
+        user.setId(UlidCreator.getUlid().toString());
+
         user.setIsActive(user.getIsActive());
         user.setName(user.getName());
         user.setEmail(user.getEmail());
         user.setPassword(user.getPassword());
         user.setCreationDate(user.getCreationDate());
-        return userRepository.save(user);
+        return template.insert(User.class).using(user);
+      //  return userRepository.save(user);
     }
 
     public Flux<User> getAllUsers() {
@@ -36,23 +44,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Mono<User> getUserById(UUID uuid) {
-        return userRepository.findById(uuid);
+    public Mono<User> getUserById(String ulid) {
+        return userRepository.findById(ulid);
     }
 
     @Override
-    public void deleteUser(UUID uuid) {
-            userRepository.deleteById(uuid);
+    public void deleteUser(String ulid) {
+            userRepository.deleteById(ulid);
     }
 
     @Override
-    public Mono<User> updateUser(UUID uuid, User user) {
-        return userRepository.findById(uuid)
+    public Mono<User> updateUser(String ulid, User user) {
+        return userRepository.findById(ulid)
                 .switchIfEmpty(Mono.error(
-                        new RuntimeException("User not found with Id: " + uuid)
+                        new RuntimeException("User not found with Id: " + ulid)
                 ))
                 .map(existingUser -> {
-                    existingUser.setId(UUID.randomUUID().toString());
+                  //  existingUser.setId(UUID.randomUUID().toString());
                     existingUser.setName(user.getName());
                     existingUser.setEmail(user.getEmail());
                     existingUser.setPassword(user.getPassword());

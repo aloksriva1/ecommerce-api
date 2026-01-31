@@ -16,12 +16,14 @@ import java.time.LocalDate;
 public class User {
 
     @Id
-    private String id;
+    private String id;  // ULID as String
     private String name;
     private String email;
     private String password;
     private Boolean isActive;
     private LocalDate creationDate;
+
+
 
 }
 
