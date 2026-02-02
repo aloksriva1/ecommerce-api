@@ -6,6 +6,7 @@ import com.corporate.learning.userservice.service.UserService;
 import com.github.f4b6a3.ulid.UlidCreator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -39,11 +40,13 @@ public class UserServiceImpl implements UserService {
       //  return userRepository.save(user);
     }
 
+    @Cacheable(value = "usersCache", key = "#user.getAllUsers")
     public Flux<User> getAllUsers() {
        return (Flux<User>) userRepository.findAll();
     }
 
     @Override
+    @Cacheable(value = "userCache", key = "#ulid")
     public Mono<User> getUserById(String ulid) {
         return userRepository.findById(ulid);
     }
@@ -54,6 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = "userCache", key = "#ulid")
     public Mono<User> updateUser(String ulid, User user) {
         return userRepository.findById(ulid)
                 .switchIfEmpty(Mono.error(
