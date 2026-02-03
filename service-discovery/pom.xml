@@ -39,8 +39,6 @@
 	</properties>
 
 
-
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -67,7 +65,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 
 
 	<build>

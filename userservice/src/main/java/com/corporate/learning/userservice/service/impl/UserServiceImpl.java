@@ -40,13 +40,11 @@ public class UserServiceImpl implements UserService {
       //  return userRepository.save(user);
     }
 
-    @Cacheable(value = "usersCache", key = "#user.getAllUsers")
     public Flux<User> getAllUsers() {
        return (Flux<User>) userRepository.findAll();
     }
 
     @Override
-    @Cacheable(value = "userCache", key = "#ulid")
     public Mono<User> getUserById(String ulid) {
         return userRepository.findById(ulid);
     }
@@ -57,7 +55,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Cacheable(value = "userCache", key = "#ulid")
     public Mono<User> updateUser(String ulid, User user) {
         return userRepository.findById(ulid)
                 .switchIfEmpty(Mono.error(
